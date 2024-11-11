@@ -12,10 +12,10 @@ func solveHanoiAPI(numDisk: Int, completion: @escaping (Data?, Error?) -> Void) 
     
     func hanoi(disk: Int, from: String, to: String, via: String) {
         if disk == 1 {
-            steps.append("Take disk \(disk) from rod \(from) to tod \(to)")
+            steps.append("Take disk \(disk) from rod \(from) to rod \(to)")
         } else {
             hanoi(disk: disk - 1, from: from, to: via, via: to)
-            steps.append("Take disk \(disk) from rod \(from) to tod \(to)")
+            steps.append("Take disk \(disk) from rod \(from) to rod \(to)")
             hanoi(disk: disk - 1, from: via, to: to, via: from)
         }
     }
