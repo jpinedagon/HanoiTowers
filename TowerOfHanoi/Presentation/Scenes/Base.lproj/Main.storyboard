@@ -50,16 +50,16 @@
                                 <rect key="frame" x="16" y="177.66666666666669" width="361" height="552.33333333333326"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxq-Sm-KIE">
-                                        <rect key="frame" x="0.0" y="0.0" width="361" height="552.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="612.33333333333337"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="KQd-Bg-wTj">
-                                                <rect key="frame" x="0.0" y="0.0" width="361" height="552.33333333333337"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="361" height="612.33333333333337"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13e-3J-erX">
-                                                        <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="552.33333333333337"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="612.33333333333337"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mJt-on-a4L">
-                                                                <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="552.33333333333337"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mJt-on-a4L">
+                                                                <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="612.33333333333337"/>
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.68229401869999995" green="1" blue="0.91454277409999996" alpha="0.50395798839999995" colorSpace="custom" customColorSpace="sRGB"/>
@@ -71,10 +71,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbV-om-chz">
-                                                        <rect key="frame" x="120.33333333333334" y="0.0" width="120.33333333333334" height="552.33333333333337"/>
+                                                        <rect key="frame" x="120.33333333333334" y="0.0" width="120.33333333333334" height="612.33333333333337"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TZw-ig-ld8">
-                                                                <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="552.33333333333337"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TZw-ig-ld8">
+                                                                <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="612.33333333333337"/>
                                                             </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.85343962689999997" green="0.76080626470000001" blue="0.89000000000000001" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
@@ -86,10 +86,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dq9-G2-qqJ">
-                                                        <rect key="frame" x="240.66666666666671" y="0.0" width="120.33333333333334" height="552.33333333333337"/>
+                                                        <rect key="frame" x="240.66666666666671" y="0.0" width="120.33333333333334" height="612.33333333333337"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="I14-D9-q5b">
-                                                                <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="552.33333333333337"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="I14-D9-q5b">
+                                                                <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="612.33333333333337"/>
                                                                 <color key="backgroundColor" red="0.80400331439999995" green="0.77967776040000003" blue="0.39720232189999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </stackView>
                                                         </subviews>
@@ -127,7 +127,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="aWp-al-2Uo" firstAttribute="top" relation="greaterThanOrEqual" secondItem="QjG-UK-fdt" secondAttribute="bottom" constant="16" id="CIN-UE-XwV"/>
+                            <constraint firstItem="aWp-al-2Uo" firstAttribute="top" secondItem="QjG-UK-fdt" secondAttribute="bottom" constant="16" id="CIN-UE-XwV"/>
                             <constraint firstItem="aWp-al-2Uo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Szt-KT-Esk"/>
                             <constraint firstItem="uv1-1n-6x5" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Tu8-lg-dOf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ijF-vB-3gd" secondAttribute="trailing" constant="16" id="Xgs-Od-yI1"/>
@@ -136,12 +136,14 @@
                             <constraint firstItem="ijF-vB-3gd" firstAttribute="top" secondItem="uv1-1n-6x5" secondAttribute="bottom" constant="16" id="Zrc-Ti-5oF"/>
                             <constraint firstItem="ijF-vB-3gd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="cgd-dc-zIp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QjG-UK-fdt" secondAttribute="trailing" constant="16" id="iyw-o2-zQM"/>
-                            <constraint firstItem="QjG-UK-fdt" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ijF-vB-3gd" secondAttribute="bottom" constant="16" id="lwX-6X-3dg"/>
+                            <constraint firstItem="QjG-UK-fdt" firstAttribute="top" secondItem="ijF-vB-3gd" secondAttribute="bottom" constant="16" id="lwX-6X-3dg"/>
                             <constraint firstItem="uv1-1n-6x5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="vVc-XC-5KO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aWp-al-2Uo" secondAttribute="bottom" constant="32" id="wyy-Dx-mtI"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="containerView" destination="gxq-Sm-KIE" id="QVU-5G-VSP"/>
+                        <outlet property="containerViewHeightConstraint" destination="PoW-Sc-9Nj" id="5Xf-ML-4Ew"/>
                         <outlet property="discNumberTextField" destination="ijF-vB-3gd" id="ISY-Jb-Oqu"/>
                         <outlet property="firstStackView" destination="mJt-on-a4L" id="k7Y-Xl-N4N"/>
                         <outlet property="secondStackView" destination="TZw-ig-ld8" id="rd4-7T-cJ7"/>

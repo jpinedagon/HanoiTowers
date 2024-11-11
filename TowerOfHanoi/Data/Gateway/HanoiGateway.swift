@@ -21,6 +21,7 @@ class HanoiGatewayImplementation: HanoiGateway {
     
     func solveHanoi(parameters: SolveHanoiRequest) async -> APIResult<HanoiResponse> {
         guard let urlRequest = parameters.apiRequest else { return .failure(APIError.unknown) }
+        Constants.disksNumber = parameters.parameters.disks
         do {
             let response = try await apiClient.fetch(type: HanoiResponse.self, with: urlRequest)
             return .success(response)

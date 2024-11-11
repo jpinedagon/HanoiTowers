@@ -6,18 +6,26 @@
 //
 
 import UIKit
+import Combine
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var containerViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var towerContainerView: UIView!
     @IBOutlet weak var towerContainerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var discNumberTextField: UITextField!
     @IBOutlet weak var firstStackView: UIStackView!
     @IBOutlet weak var secondStackView: UIStackView!
     @IBOutlet weak var thirdStackView: UIStackView!
+    private var viewModel: HanoiViewModel?
+    private var cancelBag = Set<AnyCancellable>()
+    private let configurator = HanoiConfiguratorImplementation()
+    private var numberOfDisks: Int = .zero
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = configurator.configure()
         setupView()
     }
     
@@ -31,6 +39,10 @@ class ViewController: UIViewController {
         toolBar.sizeToFit()
         
         discNumberTextField.inputAccessoryView = toolBar
+        firstStackView.isLayoutMarginsRelativeArrangement = true
+        secondStackView.isLayoutMarginsRelativeArrangement = true
+        thirdStackView.isLayoutMarginsRelativeArrangement = true
+        bind()
     }
     
     @objc private func handleSetButtonOnTextfield() {
@@ -39,13 +51,84 @@ class ViewController: UIViewController {
         setupDisks(numberOfDisks: Int(text) ?? .zero)
         view.endEditing(true)
     }
-
+    
+    private func bind() {
+        viewModel?.output.showFailureMessage.sink(receiveValue: { [weak self] message in
+            guard let self = self else { return }
+            print(message)
+        }).store(in: &cancelBag)
+        viewModel?.output.showSolution.sink(receiveValue: { [weak self] solution in
+            guard let self = self else { return }
+            self.showSolution(steps: solution.steps)
+        }).store(in: &cancelBag)
+    }
+    
     @IBAction func solveTower(_ sender: UIButton) {
+        viewModel?.input.solveHanoi.send(numberOfDisks)
+    }
+    
+    private func setInitialHeights() {
+        let initialHeight = containerView.frame.height
+        containerViewHeightConstraint.constant = initialHeight
+        containerViewHeightConstraint.priority = .required
+        containerView.layoutIfNeeded()
+    }
+    
+    private func restoreConstraints() {
+        containerViewHeightConstraint.constant = .zero
+        containerViewHeightConstraint.priority = .defaultLow
+        containerView.layoutIfNeeded()
+    }
+    
+    private func showSolution(steps: [String]) {
+        setInitialHeights()
+        var stepIndex: Int = .zero
+        let rods: [Character: UIStackView] = [
+            "A": firstStackView,
+            "B": secondStackView,
+            "C": thirdStackView
+        ]
         
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            guard stepIndex < steps.count else {
+                timer.invalidate()
+                self.restoreConstraints()
+                return
+            }
+            let step = steps[stepIndex]
+            let components = step.components(separatedBy: " ")
+            guard
+                components.count >= 7,
+                let fromRod = components[5].last,
+                let toRod = components[8].last,
+                let originTower = rods[fromRod],
+                let destinationTower = rods[toRod] else {
+                return
+            }
+            
+            if let diskView = originTower.arrangedSubviews.first {
+                self.moveDisk(disk: diskView, from: originTower, to: destinationTower)
+            }
+            stepIndex += 1
+        }
+    }
+    
+    
+    private func moveDisk(disk: UIView,
+                          from origin: UIStackView,
+                          to destination: UIStackView) {
+        origin.removeArrangedSubview(disk)
+        disk.removeFromSuperview()
+        
+        destination.insertArrangedSubview(disk, at: .zero)
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     private func setupDisks(numberOfDisks: Int) {
         cleanUI()
+        self.numberOfDisks = numberOfDisks
         let maxWidth = firstStackView.frame.width
         let diskHeight: CGFloat = 20
         
@@ -61,21 +144,12 @@ class ViewController: UIViewController {
             
             firstStackView.addArrangedSubview(diskView)
         }
-        adjustContainerHeight(for: numberOfDisks)
-    }
-    
-    private func adjustContainerHeight(for disks: Int) {
-        let diskHeight: CGFloat = 20
-        let totalHeight: CGFloat = CGFloat(disks) * diskHeight
-        
-        towerContainerViewHeightConstraint.constant = totalHeight
-        towerContainerView.layoutIfNeeded()
     }
     
     private func cleanUI() {
+        numberOfDisks = .zero
         firstStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         secondStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         thirdStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        
     }
 }

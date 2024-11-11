@@ -9,4 +9,5 @@ import Foundation
 
 struct Constants {
     static let mockURL = URL(string: "https://www.incode.com/hanoi")!
+    static var disksNumber: Int = .zero
 }
