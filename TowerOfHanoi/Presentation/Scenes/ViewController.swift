@@ -9,16 +9,13 @@ import UIKit
 import Combine
 
 class ViewController: UIViewController {
-    
-    @IBOutlet weak var containerViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var towerContainerView: UIView!
-    @IBOutlet weak var towerContainerViewHeightConstraint: NSLayoutConstraint!
+    /// MARK: - Outlets
     @IBOutlet weak var discNumberTextField: UITextField!
     @IBOutlet weak var solveButton: UIButton!
     @IBOutlet weak var firstStackView: UIStackView!
     @IBOutlet weak var secondStackView: UIStackView!
     @IBOutlet weak var thirdStackView: UIStackView!
+    /// MARK: - Properties
     private var viewModel: HanoiViewModel?
     private var cancelBag = Set<AnyCancellable>()
     private let configurator = HanoiConfiguratorImplementation()
@@ -68,21 +65,7 @@ class ViewController: UIViewController {
         solveButton.setState(isEnabled: false)
     }
     
-    private func setInitialHeights() {
-        let initialHeight = containerView.frame.height
-        containerViewHeightConstraint.constant = initialHeight
-        containerViewHeightConstraint.priority = .required
-        containerView.layoutIfNeeded()
-    }
-    
-    private func restoreConstraints() {
-        containerViewHeightConstraint.constant = .zero
-        containerViewHeightConstraint.priority = .defaultLow
-        containerView.layoutIfNeeded()
-    }
-    
     private func showSolution(steps: [String]) {
-        setInitialHeights()
         var stepIndex: Int = .zero
         let rods: [Character: UIStackView] = [
             "A": firstStackView,
@@ -90,10 +73,9 @@ class ViewController: UIViewController {
             "C": thirdStackView
         ]
         
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+        Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) { timer in
             guard stepIndex < steps.count else {
                 timer.invalidate()
-                self.restoreConstraints()
                 return
             }
             let step = steps[stepIndex]
