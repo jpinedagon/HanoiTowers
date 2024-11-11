@@ -35,13 +35,18 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aWp-al-2Uo">
                                 <rect key="frame" x="16" y="746" width="361" height="40"/>
+                                <color key="backgroundColor" systemColor="linkColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="X42-Xg-ghW"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Solve">
-                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
-                                </buttonConfiguration>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Solve"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="solveTower:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Y2-C1-unS"/>
                                 </connections>
@@ -147,6 +152,7 @@
                         <outlet property="discNumberTextField" destination="ijF-vB-3gd" id="ISY-Jb-Oqu"/>
                         <outlet property="firstStackView" destination="mJt-on-a4L" id="k7Y-Xl-N4N"/>
                         <outlet property="secondStackView" destination="TZw-ig-ld8" id="rd4-7T-cJ7"/>
+                        <outlet property="solveButton" destination="aWp-al-2Uo" id="GN4-3q-2FL"/>
                         <outlet property="thirdStackView" destination="I14-D9-q5b" id="H7j-9A-9ZG"/>
                         <outlet property="towerContainerView" destination="QjG-UK-fdt" id="NpK-qi-VnY"/>
                         <outlet property="towerContainerViewHeightConstraint" destination="HCT-Ij-qzH" id="oBb-Bx-Qp4"/>
@@ -158,6 +164,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

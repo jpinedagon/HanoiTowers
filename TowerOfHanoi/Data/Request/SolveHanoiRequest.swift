@@ -20,7 +20,6 @@ class SolveHanoiRequest: APIRequest {
         do {
             let bodyData = try JSONEncoder().encode(parameters)
             request.httpBody = bodyData
-            request.storedHttpBody = bodyData
             return request
         } catch {
             return nil

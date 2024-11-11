@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var towerContainerView: UIView!
     @IBOutlet weak var towerContainerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var discNumberTextField: UITextField!
+    @IBOutlet weak var solveButton: UIButton!
     @IBOutlet weak var firstStackView: UIStackView!
     @IBOutlet weak var secondStackView: UIStackView!
     @IBOutlet weak var thirdStackView: UIStackView!
@@ -39,9 +40,7 @@ class ViewController: UIViewController {
         toolBar.sizeToFit()
         
         discNumberTextField.inputAccessoryView = toolBar
-        firstStackView.isLayoutMarginsRelativeArrangement = true
-        secondStackView.isLayoutMarginsRelativeArrangement = true
-        thirdStackView.isLayoutMarginsRelativeArrangement = true
+        solveButton.setState(isEnabled: false)
         bind()
     }
     
@@ -49,13 +48,14 @@ class ViewController: UIViewController {
         guard let text = discNumberTextField.text,
               !text.isEmpty else { return }
         setupDisks(numberOfDisks: Int(text) ?? .zero)
+        solveButton.setState(isEnabled: true)
         view.endEditing(true)
     }
     
     private func bind() {
         viewModel?.output.showFailureMessage.sink(receiveValue: { [weak self] message in
             guard let self = self else { return }
-            print(message)
+            self.solveButton.setState(isEnabled: true)
         }).store(in: &cancelBag)
         viewModel?.output.showSolution.sink(receiveValue: { [weak self] solution in
             guard let self = self else { return }
@@ -65,6 +65,7 @@ class ViewController: UIViewController {
     
     @IBAction func solveTower(_ sender: UIButton) {
         viewModel?.input.solveHanoi.send(numberOfDisks)
+        solveButton.setState(isEnabled: false)
     }
     
     private func setInitialHeights() {
